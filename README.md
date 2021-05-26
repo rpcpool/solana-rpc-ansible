@@ -28,7 +28,7 @@ Role Variables
 
 The deploy ensures that the checksum for the version of solana-installer that you are downloading matches one given in `vars/main.yml`. In case you want to insatll a solana version not listed there, it is good if you first download and check the sha256 checksum of the solana-installer script (https://raw.githubusercontent.com/solana-labs/solana/install/solana-install-init.sh).
 
-There are a large number of configurable parameters for solana. Many of these have workable defaults, and you should be able to have a decent experience with the default values. If you run this role without specifying any parameters, it'll configure a standard `mainnet` RPC node. 
+There are a large number of configurable parameters for Solana. Many of these have workable defaults, and you can use this role to deploy a Solana RPC node without changing any of the default values and you should be able to have a decent experience. If you run this role without specifying any parameters, it'll configure a standard `mainnet` RPC node. 
 
 ### Basic variables
 
@@ -116,7 +116,22 @@ Occasionally devnet/testnet will experience forks. In these cases use the follow
 
 ## CPU governor & Sysctl settings
 
-Typically you can deploy `solana-sys-tuner` together with this config to tune some variables. If you are new to tuning performance we also recommend looking at `tuned` from RedHat, where the `throughput-performance` profile is suitable. You can also specify a list of sysctl values for this playbook to add automatically. Here is a list of sysctl values that have been used:
+There are certain configurations that you need to do to get your RPC node running properly. This role can help you make some of these standard config changes. However, full optmisation depends greatly on your hardware so you need to take time to be familiar with how to configure your hardware right.
+
+However, the most important element of optimisation is the CPU performance governor. This controls boost behaviour and energy usage. On many hosts in DCs they are configured for balance between performance and energy usage. In the case of Solana we really need them to perform at their fastest. To set the servers CPU governor there are three options:
+	
+ 1. You have access to BIOS and you set the BIOS cpu setting to `max performance`. This seems to work well for HPE systems. In this case, specify the variable `cpu_governor: bios`. This is sometimes required for AMD EPYC systems too.
+ 2. You have acccess to BIOS and you set the BIOS cpu setting to `os control`. This should be the typical default. In this case you can leave the `cpu_governor` variable as default or set it explicitly to `cpu_governor: performance`.
+ 3. You don't have access to BIOS or CPU governor settings. If possible, try to set `cpu_governor: performance`. Otherwise, hopefully your provider has configured it for good performance!
+
+The second config you need to do is to edit various kernel parameters to fit the Solana RPC use case.
+
+One option is to deploy `solana-sys-tuner` together with this config to autotune some variables for you. 
+
+A second option, especially if you are new to tuning performance is `tuned` and `tune-adm` from RedHat, where the `throughput-performance` profile is suitable. 
+
+Finally, if you deploy through this role you can also specify a list of sysctl values for this playbook to automatically set up on your host. This allows full control and sets them so that they are permanently configured.
+Here is a list of sysctl values that we have used on rpcpool:
 
 ```
 sysctl_optimisations:
@@ -148,13 +163,6 @@ sysctl_optimisations:
   net.core.wmem_max: 134217728
   net.core.wmem_default: 134217728
 ```
-
-Another important element is the CPU governor. There are three options:
-	
- 1. You have access to BIOS and you set the BIOS cpu setting to `max performance`. This seems to work well for HPE systems. In this case, specify the variable `cpu_governor: bios`. This is sometimes required for AMD EPYC systems too.
- 2. You have acccess to BIOS and you set the BIOS cpu setting to `os control`. This should be the common default. In this case you can leave the `cpu_governor` variable as default or set it to `cpu_governor: performance`.
- 3. You don't have access to BIOS or CPU governor settings. If possible, try to set `cpu_governor: performance`. Otherwise, hopefully your provider has configured it for good performance!
-
 
 Example Playbooks
 -----------------
@@ -199,6 +207,12 @@ Then start up the solana RPC process by running `systemctl --user start solana-r
 Finally, to see logs for your Solana RPC node run `journalctl --user -u solana-rpc -f`.
 
 If this is your first time running a Solana node, you can find more details about how to operate the node on [https://docs.solana.com/running-validator/validator-start](https://docs.solana.com/running-validator/validator-start) and [https://github.com/agjell/sol-tutorials/](https://github.com/agjell/sol-tutorials/). 
+
+
+Other playbooks
+--------------------
+
+Usually you will want to deploy a reverse proxy in front of the Solana RPC. HAproxy is a great option and we have a playbook for configuring HAproxy for a solana rpc server [here](https://github.com/rpcpool/solana-rpc-haproxy-ansible).
 
 
 License
