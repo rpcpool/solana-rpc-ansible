@@ -172,6 +172,8 @@ Running the RPC node
 
 After the deploy you can login to the machine and run `su -l solana` to become the solana user. 
 
+To see the Solana validator command line generated for you during the deploy you can take a look at `/home/solana/bin/solana-rpc.sh`. Remember that any changes to this file will be overwritten next time you run this Ansible.
+
 For the first start up, you should comment out `--no-snapshot-fetch` in the file `/home/solana/bin/solana-rpc.sh`. This will allow solana to download the basic files it requires. Remember to activate this line again before you run the validator the first time.
 
 Then start up the solana RPC process by running `systemctl --user start solana-rpc`. You can see status of the process by running `systemctl --user status solana-rpc`. The first start up will take some time. You can monitor start up by running `solana catchup`.
@@ -179,6 +181,7 @@ Then start up the solana RPC process by running `systemctl --user start solana-r
 Finally, to see logs for your Solana RPC node run `journalctl --user -u solana-rpc -f`.
 
 If this is your first time running a Solana node, you can find more details on [https://github.com/agjell/sol-tutorials/](https://github.com/agjell/sol-tutorials/) about how to operate the node.
+
 
 License
 -------
