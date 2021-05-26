@@ -28,7 +28,7 @@ Role Variables
 
 The deploy ensures that the checksum for the version of solana-installer that you are downloading matches one given in `vars/main.yml`. In case you want to insatll a solana version not listed there, it is good if you first download and check the sha256 checksum of the solana-installer script (https://raw.githubusercontent.com/solana-labs/solana/install/solana-install-init.sh).
 
-There are a large number of configurable parameters for solana. Many of these have workable defaults, and you should be able to have a decent experience with the default values.
+There are a large number of configurable parameters for solana. Many of these have workable defaults, and you should be able to have a decent experience with the default values. If you run this role without specifying any parameters, it'll configure a standard `mainnet` RPC node. 
 
 ### Basic variables
 
@@ -156,15 +156,33 @@ Another important element is the CPU governor. There are three options:
 	3. You don't have access to BIOS or CPU governor settings. If possible, try to set `cpu_governor: performance`. Otherwise, hopefully your provider has configured it for good performance!
 
 
+Example Playbooks
+-----------------
 
-Example Playbook
-----------------
+Mainnet node:
 
 ```
     - hosts: rpc_nodes
       roles:
-         - { role: rpcpool.solana-rpc-ansible, solana_network: mainnet }
+         - { role: rpcpool.solana-rpc, solana_network: mainnet }
 ```
+
+Testnet node:
+
+```
+    - hosts: rpc_nodes
+      roles:
+         - { role: rpcpool.solana-rpc, solana_network: testnet }
+```
+
+Devnet node:
+
+```
+    - hosts: rpc_nodes
+      roles:
+         - { role: rpcpool.solana-rpc, solana_network: devnetnet }
+```
+
 
 
 Running the RPC node
