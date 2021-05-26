@@ -9,7 +9,6 @@ find "{{ solana_ledger_location }}" -name 'snapshot-*' -size 0 -print -exec rm {
 
 # Start solana rpc node, intended to be used with journalctl/systemctl. Logs will go to journalctl.
 exec /home/solana/.local/share/solana/install/active_release/bin/solana-validator \
-{% endif %}
   --identity {{ solana_public_key }} \
 {% if solana_gossip_host is defined and solana_gossip_host|length > 0 %}
   --gossip-host {{ solana_gossip_host }}

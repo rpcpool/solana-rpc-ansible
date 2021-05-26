@@ -2,12 +2,11 @@
 # CPU variables
 cpu_governor: performance
 
-sysctl_optimisations: []
-
+sysctl_optimisations: {}
 
 # Solana variables
 
-solana_installer_version: 1.6.10
+solana_installer_version: v1.6.10
 
 solana_version: stable
 
@@ -19,15 +18,11 @@ solana_accounts_location: /solana/ledger/accounts
 
 solana_authorized_voters: []
 
-solana_generate_keypair: true
-
 solana_frozen_accounts: []
 
 solana_rpc_history: true
 
-solana_realtime_scheduler: true
-
-solana_bigtable_enabled: false
+solana_realtime_scheduler: false
 
 solana_index_exclude_keys: []
 
@@ -52,8 +47,6 @@ solana_limit_ledger_size: ''
 
 solana_trusted_validators: []
 
-solana_rpc_history: true
-
 solana_account_index: program-id spl-token-owner spl-token-mint
 
 solana_bigtable_enabled: false
@@ -61,7 +54,7 @@ solana_bigtable_enabled: false
 solana_network: mainnet
 
 solana_enabled_services:
-	- solana-rpc
+  - solana-rpc
 
 solana_disabled_services: []
 

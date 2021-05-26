@@ -16,6 +16,7 @@
   command: "/usr/local/sbin/solana-install-init.sh {{ solana_version }}"
   args:
     chdir: /home/solana/
+  become: true
   become_user: solana
   register: install_output
 
@@ -42,4 +43,5 @@
     repo: https://github.com/solana-labs/solana.git
     dest: /home/solana/src/solana
     clone: yes
+  become: true
   become_user: solana

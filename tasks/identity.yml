@@ -8,11 +8,6 @@
     creates: /home/solana/identity.json
   when: (solana_keypairs is not defined or solana_keypairs|length == 0) and solana_generate_keypair
 
-- name: update solana endpoint  
-  command:  /home/solana/.local/share/solana/install/active_release/bin/solana config set --url "{{ solana_endpoints[solana_network] }}"
-  become: true
-  become_user: solana
-
 - name: ensure solana keys are present
   copy:
     content: "{{ item.key }}"

@@ -6,6 +6,8 @@ An Ansible role to deploy a Solana RPC node. This configures the validator softw
 Hardware Requirements
 ------------
 
+Typically an RPC server requires _at least_ the same specs as a Solana validator, but typically has higher requirements. In particular, we recommend using 256 GB of RAM in order to store indexes.
+
 Before deploy you should prepare the host so that the directory that you use for your Accounts database and your Ledger location are properly configured. This can include setting up a tmpfs folder for accounts and a separate filesystem (ideally on an NVME drive) for the ledger. A common way to configure this might be:
 
 ```
@@ -13,12 +15,13 @@ Before deploy you should prepare the host so that the directory that you use for
 /solana/ledger - a 2 TB NVME drive to hold ledger
 ```
 
-
 Software Requirements
 ------------
 
  * Ansible >= 2.7 (tested primarily on Ansible 2.8)
  * Ubuntu 18.04+ on the target deployment machine 
+
+This role assumes some familiarity with the Solana validator software deployment process.
 
 Role Variables
 --------------
@@ -153,6 +156,7 @@ Another important element is the CPU governor. There are three options:
 	3. You don't have access to BIOS or CPU governor settings. If possible, try to set `cpu_governor: performance`. Otherwise, hopefully your provider has configured it for good performance!
 
 
+
 Example Playbook
 ----------------
 
@@ -161,6 +165,20 @@ Example Playbook
       roles:
          - { role: rpcpool.solana-rpc-ansible }
 ```
+
+
+Running the RPC node
+--------------------
+
+After the deploy you can login to the machine and run `su -l solana` to become the solana user. 
+
+For the first start up, you should comment out `--no-snapshot-fetch` in the file `/home/solana/bin/solana-rpc.sh`. This will allow solana to download the basic files it requires. Remember to activate this line again before you run the validator the first time.
+
+Then start up the solana RPC process by running `systemctl --user start solana-rpc`. You can see status of the process by running `systemctl --user status solana-rpc`. The first start up will take some time. You can monitor start up by running `solana catchup`.
+
+Finally, to see logs for your Solana RPC node run `journalctl --user -u solana-rpc -f`.
+
+If this is your first time running a Solana node, you can find more details on [https://github.com/agjell/sol-tutorials/](https://github.com/agjell/sol-tutorials/) about how to operate the node.
 
 License
 -------
