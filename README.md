@@ -198,7 +198,7 @@ Then start up the solana RPC process by running `systemctl --user start solana-r
 
 Finally, to see logs for your Solana RPC node run `journalctl --user -u solana-rpc -f`.
 
-If this is your first time running a Solana node, you can find more details about how to operate the node.on https://docs.solana.com/running-validator/validator-start](https://docs.solana.com/running-validator/validator-start) and [https://github.com/agjell/sol-tutorials/](https://github.com/agjell/sol-tutorials/). 
+If this is your first time running a Solana node, you can find more details about how to operate the node on [https://docs.solana.com/running-validator/validator-start](https://docs.solana.com/running-validator/validator-start) and [https://github.com/agjell/sol-tutorials/](https://github.com/agjell/sol-tutorials/). 
 
 
 License
