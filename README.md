@@ -44,7 +44,7 @@ These are the basic variables that configure the setup of the validators. They h
 | `solana_generate_keypair` | true | Whether or not to generate a keypair. If you haven't specified `solana_keypairs` and you set this to true, a new key will be generated and placed in /home/solana/identity.json |
 | `solana_public_key` | `/home/solana/identity.json` | Location of the identity of the validator node. |
 | `solana_network` | mainnet | The solana network that this node is supposed to be part of |
-| `solana_environment` | `[ "RUST_LOG=solana=info,solana_streamer::streamer=warn" ]` | Environment variables to specify for the validator node, most importantly `RUST_LOG` |
+| `solana_environment` | see defaults/main.yml | Environment variables to specify for the validator node, most importantly `RUST_LOG` |
 | `solana_enabled_services` | `[ solana-rpc ]`  | List of services to start automatically on boot |
 | `solana_disabled_services` | `[ ]` | List of services to set as disabled |
 | `solana_gossip_port` | 8001 | Port for gossip traffic (needs to be open publicly in firewall) |
@@ -107,12 +107,12 @@ You can specify Google Bigtable account credentials for querying blocks not pres
 
 ## Handling forks
 
-Occasionally devnet/testnet will experience forks. In these cases use the following:
+Occasionally devnet/testnet will experience forks. In these cases use the following parameters as instructed in Discord:
 
 | Name                 | Default value        | Description                |
 |----------------------|----------------------|----------------------------|
 | `solana_hard_fork` |  | Hard fork |
-| `solana_wait_for_supermajority` |  | Whether node should wait for supermajority or not|
+| `solana_wait_for_supermajority` |  | Whether node should wait for supermajority or not |
 
 ## CPU governor & Sysctl settings
 
@@ -163,7 +163,7 @@ Example Playbook
 ```
     - hosts: rpc_nodes
       roles:
-         - { role: rpcpool.solana-rpc-ansible }
+         - { role: rpcpool.solana-rpc-ansible, solana_network: mainnet }
 ```
 
 
