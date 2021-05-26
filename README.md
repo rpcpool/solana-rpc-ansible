@@ -6,7 +6,7 @@ An Ansible role to deploy a Solana RPC node. This configures the validator softw
 Hardware Requirements
 ------------
 
-Typically an RPC server requires _at least_ the same specs as a Solana validator, but typically has higher requirements. In particular, we recommend using 256 GB of RAM in order to store indexes.
+An RPC server requires _at least_ the same specs as a Solana validator, but typically has higher requirements. In particular, we recommend using 256 GB of RAM in order to store indexes. For more information about hardware requirements, please see [https://docs.solana.com/running-validator/validator-reqs](https://docs.solana.com/running-validator/validator-reqs).
 
 Before deploy you should prepare the host so that the directory that you use for your Accounts database and your Ledger location are properly configured. This can include setting up a tmpfs folder for accounts and a separate filesystem (ideally on an NVME drive) for the ledger. A common way to configure this might be:
 
@@ -82,7 +82,7 @@ These are variables you can tweak to improve performance
 |----------------------|----------------------|----------------------------|
 | `solana_snapshot_compression` |  | Whether to compress snapshots or not. Specify none to improve performance.  |
 | `solana_snapshot_interval_slots` | | How often to take snapshots. Increase to improve performance. Suggested value is 500. |
-| `solana_pubsub_max_connections` | 1000 | maximum number of pubsub connections to allow. |
+| `solana_pubsub_max_connections` | 1000 | Maximum number of pubsub connections to allow. |
 | `solana_bpf_jit` | | Whether to enable BPF JIT . Default on for devnet. |
 | `solana_banking_threads` | 16 | Number of banking threads. |
 | `solana_rpc_threads` | | Number of RPC threads (default maximum threads/cores on system) |
@@ -151,9 +151,9 @@ sysctl_optimisations:
 
 Another important element is the CPU governor. There are three options:
 	
-	1. You have access to BIOS and you set the BIOS cpu setting to `max performance`. This seems to work well for HPE systems. In this case, specify the variable `cpu_governor: bios`. This is sometimes required for AMD EPYC systems too.
-	2. You have acccess to BIOS and you set the BIOS cpu setting to `os control`. This should be the common default. In this case you can leave the `cpu_governor` variable as default or set it to `cpu_governor: perforamnce`.
-	3. You don't have access to BIOS or CPU governor settings. If possible, try to set `cpu_governor: performance`. Otherwise, hopefully your provider has configured it for good performance!
+ 1. You have access to BIOS and you set the BIOS cpu setting to `max performance`. This seems to work well for HPE systems. In this case, specify the variable `cpu_governor: bios`. This is sometimes required for AMD EPYC systems too.
+ 2. You have acccess to BIOS and you set the BIOS cpu setting to `os control`. This should be the common default. In this case you can leave the `cpu_governor` variable as default or set it to `cpu_governor: performance`.
+ 3. You don't have access to BIOS or CPU governor settings. If possible, try to set `cpu_governor: performance`. Otherwise, hopefully your provider has configured it for good performance!
 
 
 Example Playbooks
@@ -180,7 +180,7 @@ Devnet node:
 ```
     - hosts: rpc_nodes
       roles:
-         - { role: rpcpool.solana-rpc, solana_network: devnetnet }
+         - { role: rpcpool.solana-rpc, solana_network: devnet }
 ```
 
 
@@ -198,7 +198,7 @@ Then start up the solana RPC process by running `systemctl --user start solana-r
 
 Finally, to see logs for your Solana RPC node run `journalctl --user -u solana-rpc -f`.
 
-If this is your first time running a Solana node, you can find more details on [https://github.com/agjell/sol-tutorials/](https://github.com/agjell/sol-tutorials/) about how to operate the node.
+If this is your first time running a Solana node, you can find more details about how to operate the node.on https://docs.solana.com/running-validator/validator-start](https://docs.solana.com/running-validator/validator-start) and [https://github.com/agjell/sol-tutorials/](https://github.com/agjell/sol-tutorials/). 
 
 
 License
