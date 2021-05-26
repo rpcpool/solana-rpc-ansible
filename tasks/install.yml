@@ -1,0 +1,45 @@
+- name: install dependencies
+  apt:
+    pkg: ['libssl-dev', 'libudev-dev', 'pkg-config', 'zlib1g-dev', 'llvm', 'clang', 'make']
+    state: present 
+
+- name: download solana-installer
+  get_url:
+    url: "https://raw.githubusercontent.com/solana-labs/solana/{{ solana_installer_version }}/install/solana-install-init.sh"
+    dest: /usr/local/sbin/solana-install-init.sh
+    mode: 0755
+    owner: root
+    group: root
+    checksum: "{{ solana_checksums[solana_installer_version] }}"
+
+- name: install solana
+  command: "/usr/local/sbin/solana-install-init.sh {{ solana_version }}"
+  args:
+    chdir: /home/solana/
+  become_user: solana
+  register: install_output
+
+- name: debug
+  debug: var=install_output
+
+- name: ensure solana storage directories are avaiable
+  file:
+    path: "{{ item }}"
+    owner: solana
+    group: solana
+    mode: 0755
+    state: directory
+  with_items:
+    - "/home/solana/bin"
+    - "/home/solana/src"
+    - "{{ solana_root }}"
+    - "{{ solana_ledger_location }}"
+    - "{{ solana_ledger_location }}/rocksdb"
+    - "{{ solana_accounts_location}}"
+
+- name: clone solana src
+  git:
+    repo: https://github.com/solana-labs/solana.git
+    dest: /home/solana/src/solana
+    clone: yes
+  become_user: solana

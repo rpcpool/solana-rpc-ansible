@@ -1,0 +1,9 @@
+# Set up bigtable
+- name: ensure bigtable json is present
+  template:
+    src: bigtable.json  
+    dest: "/home/solana/bigtable.json"
+    owner: solana
+    group: solana
+    mode: 0600
+  when: solana_bigtable_enabled

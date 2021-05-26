@@ -1,0 +1,20 @@
+---
+
+# Creating a solana user
+- name: create solana user
+  user: 
+    name: solana
+    password: '!'
+    shell: /bin/bash
+
+# Get solana uid/gid
+- name: register uid of solana user
+  command: id -u solana
+  register: solana_uid
+
+# Get solana uid/gid
+- name: register uid of solana user
+  command: id -g solana
+  register: solana_gid
+
+

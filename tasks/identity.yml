@@ -1,0 +1,34 @@
+# Configure solana key
+- name: ensure solana key is present
+  command: /home/solana/.local/share/solana/install/active_release/bin/solana-keygen new -o /home/solana/identity.json  --no-bip39-passphrase -s
+  become: true
+  become_user: solana
+  args:
+    chdir: /home/solana/
+    creates: /home/solana/identity.json
+  when: (solana_keypairs is not defined or solana_keypairs|length == 0) and solana_generate_keypair
+
+- name: update solana endpoint  
+  command:  /home/solana/.local/share/solana/install/active_release/bin/solana config set --url "{{ solana_endpoints[solana_network] }}"
+  become: true
+  become_user: solana
+
+- name: ensure solana keys are present
+  copy:
+    content: "{{ item.key }}"
+    dest: "/home/solana/{{ item.name }}.json"
+    owner: solana
+    group: solana
+    mode: 0600
+  with_items: "{{ solana_keypairs }}"
+  when: solana_keypairs is defined
+
+- name: check solana pubkey
+  command: /home/solana/.local/share/solana/install/active_release/bin/solana-keygen pubkey "{{ solana_public_key }}"
+  register: res_pubkey
+
+- name: save public key hash
+  set_fact:
+    solana_public_key_hash: "{{ res_pubkey.stdout }}"
+
+

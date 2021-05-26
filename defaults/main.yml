@@ -1,0 +1,80 @@
+---
+# CPU variables
+cpu_governor: performance
+
+sysctl_optimisations: []
+
+
+# Solana variables
+
+solana_installer_version: 1.6.10
+
+solana_version: stable
+
+solana_root: /solana
+
+solana_ledger_location: /solana/ledger
+
+solana_accounts_location: /solana/ledger/accounts
+
+solana_authorized_voters: []
+
+solana_generate_keypair: true
+
+solana_frozen_accounts: []
+
+solana_rpc_history: true
+
+solana_realtime_scheduler: true
+
+solana_bigtable_enabled: false
+
+solana_index_exclude_keys: []
+
+solana_generate_keypair: true
+
+solana_public_key: /home/solana/identity.json
+
+solana_keypairs: []
+
+solana_environment:
+  - "RUST_LOG=solana=info,solana_streamer::streamer=warn"
+
+solana_gossip_port: '8001'
+
+solana_rpc_port: '8899'
+
+solana_dynamic_port_range: '8002-8012'
+
+solana_wal_recovery_mode: skip_any_corrupted_record
+
+solana_limit_ledger_size: ''
+
+solana_trusted_validators: []
+
+solana_rpc_history: true
+
+solana_account_index: program-id spl-token-owner spl-token-mint
+
+solana_bigtable_enabled: false
+
+solana_network: mainnet
+
+solana_enabled_services:
+	- solana-rpc
+
+solana_disabled_services: []
+
+# solana_metrics_config
+# solana_pubsub_max_connections
+# solana_bpf_jit
+# solana_accounts_db_caching
+# solana_snapshot_interval_slots
+# solana_wait_for_supermajority
+# solana_hard_fork
+# solana_accounts_shrink_path
+# solana_rpc_faucet_address: 
+# solana_snapshot_compression: 'none'
+# solana_banking_threads:
+# solana_rpc_threads
+

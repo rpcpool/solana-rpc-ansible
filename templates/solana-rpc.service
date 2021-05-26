@@ -1,0 +1,21 @@
+[Unit]
+Description=Solana RPC Node
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+
+EnvironmentFile=/home/solana/rpc.env
+
+ExecStart=/home/solana/bin/solana-rpc.sh
+
+LimitNOFILE={{ solana_limit_nofile|default(500000) }}
+LimitNPROC={{ solana_limit_nproc|default(500000) }}
+
+WorkingDirectory=/home/solana/
+
+[Install]
+WantedBy=default.target

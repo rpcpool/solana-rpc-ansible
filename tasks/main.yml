@@ -1,0 +1,39 @@
+---
+- name: Gather variables on basis of solana network
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ solana_network | lower }}.yml"
+    - "{{ solana_network | lower }}-default.yml"
+
+# Set up a solana user
+- include: user.yml
+  tags:
+    - solana_configure
+    - solana_install
+    - solana_run
+
+# Install solana
+- include: install.yml
+  tags:
+    - solana_install
+
+# Set cpu optimisations
+- include: optimisations.yml
+  tags:
+    - solana_configure
+
+# Setup RPC identity
+- include: identity.yml
+  tags:
+    - solana_configure
+
+# Setup bigtable
+- include: bigtable.yml
+  tags:
+    - solana_configure
+
+
+# Setup solana service files
+- include: service.yml
+  tags:
+    - solana_run

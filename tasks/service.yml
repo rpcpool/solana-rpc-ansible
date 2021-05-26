@@ -1,0 +1,101 @@
+---
+
+- name: ensure xdg runtime dir is set in bashrc
+  lineinfile:
+    path: "/home/solana/.bashrc"
+    regexp: "^export XDG_RUNTIME_DIR"
+    line: "export XDG_RUNTIME_DIR=/run/user/$(id -u)"
+
+- name: ensure solana user can use lingering systemd
+  command: loginctl enable-linger solana
+
+- name: ensure solana user is part of systemd-journal group
+  user:
+    name: solana
+    groups: systemd-journal
+    append: yes
+
+- name: ensure solana directories exists
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+    owner: root
+    group: root
+  with_items:
+    - "/etc/systemd/system/user@.service.d/"
+    - "/etc/systemd/user.conf.d/"
+
+- name: install user service override
+  template:
+    src: user-override.conf
+    dest: /etc/systemd/system/user@.service.d/override.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: install user override values
+  template:
+    src: user-conf-d-override.conf
+    dest: /etc/systemd/user.conf.d/override.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: ensure systemd user dir is available
+  file:
+    path: "/home/solana/.config/systemd/user/"
+    owner: solana
+    group: solana
+    mode: 0750
+    state: directory
+
+- name: copy rpc.sh
+  template:
+    src: solana-rpc.sh
+    dest: /home/solana/bin/solana-rpc.sh
+    owner: solana
+    group: solana
+    mode: 0755
+
+- name: copy rpc.env
+  template:
+    src: solana-rpc.env
+    dest: /home/solana/rpc.env
+    owner: solana
+    group: solana
+    mode: 0640
+
+- name: "install {{ item }} service"
+  template:
+    src: "{{ item }}.service"
+    dest: "/home/solana/.config/systemd/user/{{ item }}.service"
+    owner: solana
+    group: solana
+    mode: 0644
+  with_items:
+    - solana-rpc
+
+- name: setup services
+  systemd:
+    daemon_reload: true
+    name: "{{ item }}"
+    enabled: yes
+    scope: user
+  become: true
+  become_user: solana
+  environment:
+    XDG_RUNTIME_DIR: "/run/user/{{ solana_uid.stdout }}"
+  with_items: "{{ solana_enabled_services }}"
+
+- name: setup services (disabled)
+  systemd:
+    daemon_reload: true
+    name: "{{ item }}"
+    enabled: no
+    scope: user
+  become: true
+  become_user: solana
+  environment:
+    XDG_RUNTIME_DIR: "/run/user/{{ solana_uid.stdout }}"
+  with_items: "{{ solana_disabled_services }}"
