@@ -53,7 +53,7 @@ These are the basic variables that configure the setup of the validators. They h
 
 ### Network specific variables
 
-Default values for these variables are specified in `vars/{{ solana_network }}-defaults.yml` (e.g. `vars/mainnet-defaults.yml`). You can also specify your own by providing the file `{{ solana_network }}.yml`.
+Default values for these variables are specified in `vars/{{ solana_network }}-default.yml` (e.g. `vars/mainnet-default.yml`). You can also specify your own by providing the file `{{ solana_network }}.yml`. You will need to specify all these variables unless you rely on the defaults.
 
 | Name                 | Default value        | Description                |
 |----------------------|----------------------|----------------------------|
