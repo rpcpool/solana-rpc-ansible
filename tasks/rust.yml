@@ -1,0 +1,37 @@
+---
+- name: install rust dependencies
+  apt:
+    pkg: ['libssl-dev', 'libudev-dev', 'pkg-config', 'zlib1g-dev', 'llvm', 'clang', 'make']
+
+- name: download rust installer
+  get_url:
+    url: "https://sh.rustup.rs"
+    dest: /usr/local/sbin/rustup-install.sh
+    mode: 0755
+    owner: root
+    group: root
+    checksum: "{{ rustup_checksum }}"
+
+- name: install rust
+  command: "/usr/local/sbin/rustup-install.sh -y"
+  args:
+    chdir: /home/solana/
+  become: true
+  become_user: solana
+  register: install_output
+
+- name: debug
+  debug: var=install_output
+
+- name: install rustfmt
+  command: rustup component add rustfmt
+  args:
+    chdir: /home/solana/
+  environment:
+    PATH: /bin:/usr/bin:/usr/local/bin:/home/solana/.cargo/bin
+  become: true
+  become_user: solana
+  register: rustup_output
+
+- name: debug
+  debug: var=rustup_output

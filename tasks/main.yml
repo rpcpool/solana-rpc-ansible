@@ -12,10 +12,17 @@
     - solana_install
     - solana_run
 
+# Install  rust
+- include: rust.yml
+  when: install_rust is defined and install_rust
+  tags:
+    - solana_install
+
 # Install solana
 - include: install.yml
   tags:
     - solana_install
+
 
 # Set cpu optimisations
 - include: optimisations.yml

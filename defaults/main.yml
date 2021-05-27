@@ -1,8 +1,12 @@
 ---
-# CPU variables
+# Performance optimisations
+
 cpu_governor: performance
 
 sysctl_optimisations: {}
+
+# Install rust?
+install_rust: true
 
 # Solana variables
 
