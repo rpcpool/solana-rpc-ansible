@@ -208,7 +208,7 @@ To see the Solana validator command line generated for you during the deploy you
 
 For the first start up, you should comment out `--no-genesis-fetch` and `--no-snapshot-fetch` in the file `/home/solana/bin/solana-rpc.sh`. This will allow solana to download the basic files it requires for first time start up. Remember to activate these lines again after you have started the validator for the first time.
 
-Then start up the solana RPC process by running `systemctl --user start solana-rpc`. You can see status of the process by running `systemctl --user status solana-rpc`. The first start up will take some time. You can monitor start up by running `solana catchup`.
+Then start up the solana RPC process by running `systemctl --user start solana-rpc`. You can see status of the process by running `systemctl --user status solana-rpc`. The first start up will take some time. You can monitor start up by running `solana catchup --our-localhost`.
 
 Finally, to see logs for your Solana RPC node run `journalctl --user -u solana-rpc -f`.
 
