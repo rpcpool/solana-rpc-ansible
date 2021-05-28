@@ -18,6 +18,13 @@
   with_items: "{{ solana_keypairs }}"
   when: solana_keypairs is defined
 
+- name: set keypair to default
+  command: /home/solana/.local/share/solana/install/active_release/bin/solana config set --keypair "{{ solana_public_key }}"
+  become: true
+  become_user: solana
+  args:
+    chdir: /home/solana/
+
 - name: check solana pubkey
   command: /home/solana/.local/share/solana/install/active_release/bin/solana-keygen pubkey "{{ solana_public_key }}"
   register: res_pubkey
