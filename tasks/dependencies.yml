@@ -3,3 +3,7 @@
     pkg: ['libssl-dev', 'libudev-dev', 'pkg-config', 'zlib1g-dev', 'llvm', 'clang', 'make', 'git', 'acl']
     state: present 
 
+- name: install linux kernel tools
+  apt:
+    pkg: ["linux-tools-generic", "linux-tools-{{ ansible_kernel }}", "inotify-tools", "htop", "iotop", "powertop", "cpufrequtils"]
+    state: present
