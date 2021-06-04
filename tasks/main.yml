@@ -5,6 +5,12 @@
     - "{{ solana_network | lower }}.yml"
     - "{{ solana_network | lower }}-default.yml"
 
+# Install dependencies
+- include: dependencies.yml
+  tags:
+    - solana_install
+
+
 # Set up a solana user
 - include: user.yml
   tags:
