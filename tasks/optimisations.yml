@@ -1,8 +1,3 @@
-- name: install linux kernel tools
-  apt:
-    pkg: ["linux-tools-{{ ansible_kernel }}", "inotify-tools", "htop", "iotop", "powertop", "cpufrequtils"]
-    state: present
-
 # CPU governor settings, can be disabled with cpu_governor = bios
 - name: disable ondemand governor (get performance governor)
   systemd:
