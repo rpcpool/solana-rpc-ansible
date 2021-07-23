@@ -12,8 +12,8 @@ EnvironmentFile=/home/solana/rpc.env
 
 ExecStart=/home/solana/bin/solana-rpc.sh
 
-LimitNOFILE={{ solana_limit_nofile|default(500000) }}
-LimitNPROC={{ solana_limit_nproc|default(500000) }}
+LimitNOFILE={{ solana_limit_nofile|default(700000) }}
+LimitNPROC={{ solana_limit_nproc|default(700000) }}
 
 WorkingDirectory=/home/solana/
 
