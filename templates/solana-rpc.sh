@@ -25,6 +25,7 @@ exec /home/solana/.local/share/solana/install/active_release/bin/solana-validato
   --log - \
   --gossip-port {{ solana_gossip_port }} \
   --rpc-port {{ solana_rpc_port }} \
+  --rpc-bind-address {{ solana_rpc_bind_address }} \
   --dynamic-port-range {{ solana_dynamic_port_range }} \
   --wal-recovery-mode {{ solana_wal_recovery_mode }} \
   --limit-ledger-size {{ solana_limit_ledger_size }} \
