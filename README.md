@@ -49,6 +49,7 @@ These are the basic variables that configure the setup of the validators. They h
 | `solana_disabled_services` | `[ ]` | List of services to set as disabled |
 | `solana_gossip_port` | 8001 | Port for gossip traffic (needs to be open publicly in firewall) |
 | `solana_rpc_port` | 8899 | Port for incoming RPC. This is typically only open on localhost. Place a proxy like `haproxy` in front of this port. |
+| `solana_rpc_bind_address` | 127.0.0.1 | Address to bind RPC on. This should typically be localhost. Place a proxy like `haproxy` in front of this to accept public traffic |
 | `solana_dynamic_port_range` | 8002-8012 | Port for incoming solana traffic. Needs to be open publicly in firewall. |
 
 ### Network specific variables
