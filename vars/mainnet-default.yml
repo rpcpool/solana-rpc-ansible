@@ -13,6 +13,7 @@ solana_metrics_config: host=https://metrics.solana.com:8086,db=mainnet-beta,u=ma
 
 solana_index_exclude_keys:
   - "kinXdEcpDQeHPEuQnqmUgtYykqKGVFq6CeVX5iAHJq6"
+  - "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
 
 solana_trusted_validators:
   - ChorusmmK7i1AxXeiTtQgQZhQNiXYU84ULeaYF1EH15n
