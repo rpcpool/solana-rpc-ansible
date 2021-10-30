@@ -1,6 +1,6 @@
 galaxy_info:
   author: Linus Kendall
-  role_name: solana-rpc
+  role_name: solana-rpc-ansible
   description: Ansible role for deploying Solana RPC nodes
   company: Triton One
   license: MIT
