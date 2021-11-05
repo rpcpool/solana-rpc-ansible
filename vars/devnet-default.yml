@@ -1,6 +1,10 @@
 solana_genesis_hash: EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG 
 solana_entrypoints: 
   - entrypoint.devnet.solana.com:8001 
+  - entrypoint2.devnet.solana.com:8001 
+  - entrypoint3.devnet.solana.com:8001 
+  - entrypoint4.devnet.solana.com:8001 
+  - entrypoint5.devnet.solana.com:8001 
 
 solana_metrics_config: host=https://metrics.solana.com:8086,db=devnet,u=scratch_writer,p=topsecret
 
@@ -8,6 +12,9 @@ solana_metrics_config: host=https://metrics.solana.com:8086,db=devnet,u=scratch_
 solana_bpf_jit: true
 
 solana_trusted_validators:
-  - dv1LfzJvDF7S1fBKpFgKoKXK5yoSosmkAdfbxBo1GqJ 
+  - dv1ZAGvdsz5hHLwWXsVnM94hWf1pjbKVau1QVkaMJ92
+  - dv2eQHeP4RFrJZ6UeiZWoc3XTtmtZCUKxxCApCDcRNV
+  - dv4ACNkpYPcE3aKmYDqZm9G5EB3J4MRoeE7WNDRBVJB
+  - dv3qDFk1DTF36Z62bNvrCXe9sKATA6xvVy6A798xxAS
 
 
