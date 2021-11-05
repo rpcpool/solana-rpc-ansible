@@ -1,6 +1,6 @@
 solana_genesis_hash: 5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d
-solana_expected_bank_hash: Fi4p8z3AkfsuGXZzQ4TD28N8QDNSWC7ccqAqTs2GPdPu
-solana_expected_shred_version: "13490"
+solana_expected_bank_hash: 5x6cLLsvsEbgbQxQNPoT1LvbTfYrx22kpXyzRxLKAMN3
+solana_expected_shred_version: "8573"
 solana_entrypoints: 
   - entrypoint.mainnet-beta.solana.com:8001
   - entrypoint2.mainnet-beta.solana.com:8001
@@ -16,10 +16,9 @@ solana_index_exclude_keys:
   - "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
 
 solana_trusted_validators:
-  - ChorusmmK7i1AxXeiTtQgQZhQNiXYU84ULeaYF1EH15n
-  - Certusm1sa411sMpV9FPqU5dXAYhmmhygvxJ23S6hJ24
-  - CakcnaRDHka2gXyfbEd2d3xsvkJkqsLw2akB3zsN1D2S
+  - 7Np41oeYqPefeNQEHSv1UDhYrehxin3NStELsSKCT4K2
+  - GdnSyH3YtwcxFvQrVVJMm1JhTS4QVX7MFsX56uJLUfiZ
   - DE1bawNcRJB9rVm3buyMVfr8mBEoyyu73NBovf2oXJsJ
-  - GdnSyH3YtwcxFvQrVVJMm1JhTS4QVX7MFsX56uJLUfiZ 
+  - CakcnaRDHka2gXyfbEd2d3xsvkJkqsLw2akB3zsN1D2S
 
 
