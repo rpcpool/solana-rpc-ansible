@@ -18,7 +18,12 @@ exec /home/solana/.local/share/solana/install/active_release/bin/solana-validato
   {% endfor %}
 {% endif %}
   --ledger {{ solana_ledger_location }} \
+{% if solana_accounts_location is defined %}
   --accounts {{ solana_accounts_location }} \
+{% endif %}
+{% if solana_snapshots_location is defined %}
+  --snapshots {{ solana_snapshots_location }} \
+{% endif %}
 {% if solana_snapshot_compression is defined %}
   --snapshot-compression {{ solana_snapshot_compression }} \
 {% endif %}
