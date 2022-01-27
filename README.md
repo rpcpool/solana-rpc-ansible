@@ -110,6 +110,7 @@ You can specify Google Bigtable account credentials for querying blocks not pres
 | Name                 | Default value        | Description                |
 |----------------------|----------------------|----------------------------|
 | `solana_bigtable_enabled` | false | Enable bigtable access |
+| `solana_bigtable_upload_enabled` | false | Enable bigtable uploading (the credentials you provide below needs write access) |
 | `solana_bigtable_project_id` | | Bigtable project id |
 | `solana_bigtable_private_key_id` | | Bigtable private key id |
 | `solana_bigtable_private_key` | | Bigtable private key |
@@ -117,6 +118,8 @@ You can specify Google Bigtable account credentials for querying blocks not pres
 | `solana_bigtable_client_id` | | Bigtable client id |
 | `solana_bigtable_client_x509_cert_url` | | Bigtable cert url  |
 
+For more information about BigTable see https://github.com/solana-labs/solana-bigtable .
+	
 
 ## Handling forks
 
