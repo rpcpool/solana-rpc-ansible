@@ -1,6 +1,5 @@
 solana_genesis_hash: 5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d
-solana_expected_bank_hash: 5x6cLLsvsEbgbQxQNPoT1LvbTfYrx22kpXyzRxLKAMN3
-solana_expected_shred_version: "8573"
+
 solana_entrypoints: 
   - entrypoint.mainnet-beta.solana.com:8001
   - entrypoint2.mainnet-beta.solana.com:8001
@@ -10,15 +9,13 @@ solana_entrypoints:
 
 solana_metrics_config: host=https://metrics.solana.com:8086,db=mainnet-beta,u=mainnet-beta_write,p=password
 
-
 solana_index_exclude_keys:
   - "kinXdEcpDQeHPEuQnqmUgtYykqKGVFq6CeVX5iAHJq6"
   - "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
 
-solana_trusted_validators:
+solana_known_validators:
   - 7Np41oeYqPefeNQEHSv1UDhYrehxin3NStELsSKCT4K2
   - GdnSyH3YtwcxFvQrVVJMm1JhTS4QVX7MFsX56uJLUfiZ
   - DE1bawNcRJB9rVm3buyMVfr8mBEoyyu73NBovf2oXJsJ
   - CakcnaRDHka2gXyfbEd2d3xsvkJkqsLw2akB3zsN1D2S
-
 
