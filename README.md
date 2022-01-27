@@ -40,6 +40,7 @@ These are the basic variables that configure the setup of the validators. They h
 | `solana_root`        | /solana              | Main directory for solana ledger and accounts |
 | `solana_ledger_location` | /solana/ledger | Storage for solana ledger (should be on NVME) |
 | `solana_accounts_location` | /solana/ledger/accounts | Storage for solana accounts information. In case you use tmpfs for accounts this should be a subdirectory of your tmpfs mount point (e.g. `/solana/tmpfs/accounts` in case tmpfs is mounted on `/solana/tmpfs` |
+| `solana_snapshots_location` | <none> | Storage for solana snapshots. Can be useful to keep on a separate NVME from your ledger. |
 | `solana_keypairs` | `[]` | List of keypairs to copy to the validator node. Each entry in the list should have a `key` and `name` entry. This will create `/home/solana/<name>.json` containing the value of `key`. |
 | `solana_generate_keypair` | true | Whether or not to generate a keypair. If you haven't specified `solana_keypairs` and you set this to true, a new key will be generated and placed in /home/solana/identity.json |
 | `solana_public_key` | `/home/solana/identity.json` | Location of the identity of the validator node. |
@@ -73,7 +74,7 @@ Default values for these variables are specified in `vars/{{ solana_network }}-d
 | `solana_metrics_config` | see vars/mainnet-default.yml | The metrics endpoint |
 | `solana_genesis_hash` | see vars/mainnet-default.yml | The genesis hash for this network |
 | `solana_entrypoints` | see vars/mainnet-default.yml | Entrypoint hosts |
-| `solana_trusted_validators` | see vars/mainnet-default.yml | Trusted validators from where to fetch snapshots and genesis bin on start up |
+| `solana_known_validators` | see vars/mainnet-default.yml | Known validators from where to fetch snapshots and genesis bin on start up |
 | `solana_expected_bank_hash` | see vars/mainnet-default.yml | Expected bank hash |
 | `solana_expected_shred_version` | see vars/mainnet-default.yml | Expected shred version |
 | `solana_index_exclude_keys` | see vars/mainnet-default.yml | Keys to exclude from indexes for performance reasons |
