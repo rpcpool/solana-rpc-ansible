@@ -47,10 +47,19 @@ These are the basic variables that configure the setup of the validators. They h
 | `solana_environment` | see defaults/main.yml | Environment variables to specify for the validator node, most importantly `RUST_LOG` |
 | `solana_enabled_services` | `[ solana-rpc ]`  | List of services to start automatically on boot |
 | `solana_disabled_services` | `[ ]` | List of services to set as disabled |
-| `solana_gossip_port` | 8001 | Port for gossip traffic (needs to be open publicly in firewall) |
-| `solana_rpc_port` | 8899 | Port for incoming RPC. This is typically only open on localhost. Place a proxy like `haproxy` in front of this port. |
+
+### Ports
+
+The following ports needs to be configured for your RPC server. 
+
+| `solana_gossip_port` | 8001 | Port for gossip traffic (needs to be open publicly in firewall for both TCP and UDP) |
+| `solana_rpc_port` | 8899 (+8900) | Ports for incoming RPC (and websocket). This is typically only open on localhost. Place a proxy like `haproxy` in front of these port(s) and don't expose them publicly. |
 | `solana_rpc_bind_address` | 127.0.0.1 | Address to bind RPC on. This should typically be localhost. Place a proxy like `haproxy` in front of this to accept public traffic |
-| `solana_dynamic_port_range` | 8002-8012 | Port for incoming solana traffic. Needs to be open publicly in firewall. |
+| `solana_dynamic_port_range` | 8002-8020 | Port for incoming solana traffic. May need to be open publicly in firewall for UDP. |
+
+From this list, you can tell that you need at least 8001-8020 open in your firewall for incoming traffic in the default case.
+
+For pure RPC nodes it may be possible to close down the TPU and TPU forward ports. These ports are dynamically allocated and you can see them by looking at your node in `solana gossip`. If you want to firewall them, you can use this utility: https://github.com/rpcpool/tpu-traffic-classifier. 
 
 ### Network specific variables
 
