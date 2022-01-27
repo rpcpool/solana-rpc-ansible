@@ -316,4 +316,4 @@ MIT
 Author Information
 ------------------
 
-This role was originally developed by [rpcpool](https://rpcpool.com). Patches, suggestions and improvements are always welcome.
+This role was originally developed by [Triton One](https://triton.one). Patches, suggestions and improvements are always welcome.
