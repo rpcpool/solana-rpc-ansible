@@ -1,6 +1,5 @@
 solana_genesis_hash: 4uhcVJyU9pJkvQyS88uRDiswHXSCkY3zQawwpjk2NsNY
-solana_expected_bank_hash: G4vJCyJXY1u8An6bdtoPNBdTFDwTtre7vvvKGpSyzL6q
-solana_expected_shred_version: "18122"
+
 
 solana_entrypoints: 
   - entrypoint.testnet.solana.com:8001 
@@ -10,7 +9,7 @@ solana_entrypoints:
 solana_metrics_config: host=https://metrics.solana.com:8086,db=tds,u=testnet_write,p=c4fa841aa918bf8274e3e2a44d77568d9861b3ea
 
 
-solana_trusted_validators:
+solana_known_validators:
   - 5D1fNXzvv5NjV1ysLjirC4WY92RNsVH18vjmcszZd8on
   - 7XSY3MrYnK8vq693Rju17bbPkCN3Z7KvvfvJx4kdrsSY
   - Ft5fbkqNa76vnsjYNwjDZUXoTWpP7VYm3mtsaQckQADN

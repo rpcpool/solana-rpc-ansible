@@ -94,8 +94,8 @@ exec /home/solana/.local/share/solana/install/active_release/bin/solana-validato
 {% for voter in solana_authorized_voters %}
   --authorized-voter {{ voter }} \
 {% endfor %}
-{% for validator in solana_trusted_validators %}
-  --trusted-validator {{ validator }} {% if not loop.last %}\
+{% for validator in solana_known_validators %}
+  --known-validator {{ validator }} {% if not loop.last %}\
   {% endif %}
 {% endfor %}
 
