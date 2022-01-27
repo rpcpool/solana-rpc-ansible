@@ -45,7 +45,7 @@ solana_rpc_port: '8899'
 
 solana_rpc_bind_address: '127.0.0.1'
 
-solana_dynamic_port_range: '8002-8012'
+solana_dynamic_port_range: '8002-8020'
 
 solana_wal_recovery_mode: skip_any_corrupted_record
 
