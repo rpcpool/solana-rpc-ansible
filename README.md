@@ -211,7 +211,7 @@ Devnet node:
 
 
 
-Running the RPC node
+Starting the RPC node
 --------------------
 
 After the deploy you can login to the machine and run `su -l solana` to become the solana user. 
@@ -226,6 +226,81 @@ Finally, to see logs for your Solana RPC node run `journalctl --user -u solana-r
 
 If this is your first time running a Solana node, you can find more details about how to operate the node on [https://docs.solana.com/running-validator/validator-start](https://docs.solana.com/running-validator/validator-start) and [https://github.com/agjell/sol-tutorials/](https://github.com/agjell/sol-tutorials/). 
 
+
+Checking the RPC node
+--------------------
+
+The basic check after you've veriried that the node has started is to track catchup: 
+
+```
+solana catchup --our-localhost
+```
+
+After this you can continue to check that it is serving RPC calls correctly.
+
+## Testing RPC access 
+You can also try a few easy validation commands (thanks buffalu: https://gist.github.com/buffalu/db6458d4f6a0b70ac303027b61a636af):
+
+```
+curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
+  {"jsonrpc":"2.0","id":1, "method":"getSlot", "params": [
+      {
+        "commitment": "processed"
+      }
+    ]}
+'
+
+curl http://localhost:8899  -X POST -H "Content-Type: application/json" -d '
+  {"jsonrpc":"2.0","id":1, "method":"getSlot"}
+'
+```
+
+## Testing websocket access
+
+The easiest way to test websockets is to install the utility `wscat`. To do so you'll need to install NodeJS and NPM and then run `npm install wscat`.
+
+You can then connect to your websocket in the following way:
+
+```
+wscat -c localhost:8900
+```
+
+From there you'll get a command prompt where you can manually enter your websocket subscription requests:
+
+```
+> {"jsonrpc":"2.0", "id":1, "method":"slotSubscribe"}
+```
+
+You should now start receiving regular updates on the slots as they are confirmed by your RPC node. 
+
+
+Access to historical data
+--------------------
+
+By default, when you start the RPC node it will being building its local ledger from the blocks that it receives over the Solana network. This local ledger starts from the point of the accounts snapshot that you downloaded when your node was starting. If you don't add `--no-snapshot-fetch` to your `solana-validator` command line, the validator will often pull a snapshot from the network when it is starting. This will leave holes or gaps in your ledger between the point where you stopped your RPC node and the point at which it downloaded the accounts snapshot. To avoid this, always specify `--no-snapshot-fetch` after the first time you started the node. Remember that any time you pull a snapshot you will create a hole in the local ledger.
+
+The size of the local ledger is determined by the parameter `--limit-ledger-size`, which is measured in shreds. A shred is a fixed data unit. The conversion betweens shreds and blocks is not fixed, as blocks can be varying size. Therefore it is very difficult to say how much history measured in time or in number of blocks that your node will store. You will have to tune it according to your needs. A good starting point can be 250-350 million shreds which should cover approximately an epoch, which should in turn mean approximately 3 days.
+
+The exact amount of data the RPC node will store also depends on the parameters `--enable-cpi-and-log-storage` and `--enable-rpc-transaction-history`. These are necessary for the node to retain and serve full block and transaction data.
+
+Your node can only provide data which it has stored in its local ledger. This means that your history will always begin from the point at which you started the node (actually: the snapshot slot for which you started the node). If the network is currently at slot N and you pulled a snapshot at slot M, then your node will start to rebuild it's history between slot M and slot N. This is what is happening during `catchup`, the node is processing (replaying) everything that happened between M and N until it catches up with the network and can process all the current incoming data.
+
+The node can (in theory) store as much history as you can fit on high speed storage (e.g. if you /don't/ specify `--limit-ledger-size` or you give it a huge value). However, this doesn't scale back to genesis. To get all history, you can use the built in Google BigTable support. You can both set your node to upload data to a Google BigTable instance, where it can be permanently available for historical querying. You can also configure your node to support queries to a BigTable instance. In this case, for any queries which the node does not have in its local ledger, it will make a request to Google BigTable and if it finds it in Google BigTable it can pull the data from there.
+
+Some RPC providers and the Solana Foundation have copies of BigTable that go back to genesis. For more information about this, see https://github.com/solana-labs/solana-bigtable . 
+
+Indexes and performance
+--------------------
+
+There are three indexes that the Solana validator generates `program-id`, `spl-token-mint`, `spl-token-owner`. The last two are used to support queries either via `getTokensByOwner` or via `getTokensByDelegate`. They are also used to suport queries of `getProgramAccounts` which employ specific filters. These indexes have started to grow huge. If you do not need these queries to be fast for your RPC node, then you should remove them as you will reduce memory usage of your node considerably as well as improve start up times. 
+
+
+Security concerns
+--------------------
+
+Security is a big field and you cannot rely on a small guide in a GitHub repo. Typically, at the very least you **should** make sure that your RPC server does not expose port 8899 and 8900 directly without any kind of proxy and access control in front of it. An easy way to do this is to use nginx or HAproxy as a reverse proxy. You can add SSL support and authentication in this way through the built in tools of each of these.
+
+To be safe, you can ensure that your rpc-bind-address is set to `127.0.0.1` (the default for this role) so that it will only respond to requests locally. 
 
 Other playbooks
 --------------------
