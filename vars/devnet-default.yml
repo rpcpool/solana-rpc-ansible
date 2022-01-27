@@ -11,7 +11,7 @@ solana_metrics_config: host=https://metrics.solana.com:8086,db=devnet,u=scratch_
 
 solana_bpf_jit: true
 
-solana_trusted_validators:
+solana_known_validators:
   - dv1ZAGvdsz5hHLwWXsVnM94hWf1pjbKVau1QVkaMJ92
   - dv2eQHeP4RFrJZ6UeiZWoc3XTtmtZCUKxxCApCDcRNV
   - dv4ACNkpYPcE3aKmYDqZm9G5EB3J4MRoeE7WNDRBVJB
