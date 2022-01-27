@@ -55,6 +55,9 @@ exec /home/solana/.local/share/solana/install/active_release/bin/solana-validato
 {% if solana_bigtable_enabled is defined and solana_bigtable_enabled %}
   --enable-rpc-bigtable-ledger-storage \
 {% endif %}
+{% if solana_bigtable_upload_enabled is defined and solana_bigtable_upload_enabled %}
+  --enable-bigtable-ledger-upload \
+{% endif %}
 {% if solana_rpc_faucet_address is defined and solana_rpc_faucet_address|length > 0 %}
   --rpc-faucet-address {{ solana_rpc_faucet_address }} \
 {% endif %}
