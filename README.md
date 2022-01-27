@@ -52,6 +52,8 @@ These are the basic variables that configure the setup of the validators. They h
 
 The following ports needs to be configured for your RPC server. 
 
+| Name                 | Default value        | Description                |
+|----------------------|----------------------|----------------------------|
 | `solana_gossip_port` | 8001 | Port for gossip traffic (needs to be open publicly in firewall for both TCP and UDP) |
 | `solana_rpc_port` | 8899 (+8900) | Ports for incoming RPC (and websocket). This is typically only open on localhost. Place a proxy like `haproxy` in front of these port(s) and don't expose them publicly. |
 | `solana_rpc_bind_address` | 127.0.0.1 | Address to bind RPC on. This should typically be localhost. Place a proxy like `haproxy` in front of this to accept public traffic |
