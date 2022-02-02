@@ -277,7 +277,28 @@ From there you'll get a command prompt where you can manually enter your websock
 
 You should now start receiving regular updates on the slots as they are confirmed by your RPC node. 
 
+RPC node falling behind/not catching up
+--------------------
 
+The most typical performance issue that an RPC node can face is that it keeps falling behind the network and is not able to catch up.
+	
+If it can't catch up the first time you started it up, this would typically be due to a misconfiguration. The most common issue is your CPU boost frequencies:
+
+	- Check that your CPU is recent enough (anything < EPYC 2nd gen or < Cascade Lake on Intel will struggle)
+	- Check that your CPU governor is not set to energy saving mode in BIOS and in your kernel settings
+	- Observe the CPU frequencies when running solana with `watch -n 1 grep MHz /proc/cpuinfo`, you'll need it to be > 3ghz on all cores typically (rule of thumb). You **do not** want to see any core going to 1.4-1.8 ever.
+	
+If it used to be able to catch up but is no longer:
+
+	- Check memory/cpu/network - do you have good CPU frequencies, are you dipping into swap (not enough memory) or is your provider throttling UDP packets?
+		- CPU: fix performance governor/boost setting
+		- Network: check UDP packet throttling and connectivity. You need at least a 500 mbps pipe without any throttling on UDP. Some providers like to block UDP or throttle it for DDoS protection. This is both on incoming and outgoing. If you are throttled on incoming your node will not receive shreds from the network in time.
+		- Memory: download more RAM. Solana doesn't like to run on swap so if you are regularly dipping into swap you need to fix that. One temporary solution can be to disable `spl-token-owner` / `spl-token-mint` indexes. They have grown really big.
+	- There's a bug that after heavy getBlocks call over RPC the node stays permanently behind, try a restart of the node and if that helps that may be your issue
+	- Have you tried unplugging it and plugging it in again? Sometimes it can help to clean your ledger and restart.
+	- Check your traffic patterns. Certain RPC traffic patterns can **easily** push your node behind. Maybe you need to add another node and split your RPC traffic or you need to ratelimit your calls to problematic queries like `getProgramAccounts`.	
+
+	
 Access to historical data
 --------------------
 
@@ -304,7 +325,12 @@ Security concerns
 
 Security is a big field and you cannot rely on a small guide in a GitHub repo. Typically, at the very least you **should** make sure that your RPC server does not expose port 8899 and 8900 directly without any kind of proxy and access control in front of it. An easy way to do this is to use nginx or HAproxy as a reverse proxy. You can add SSL support and authentication in this way through the built in tools of each of these.
 
-To be safe, you can ensure that your rpc-bind-address is set to `127.0.0.1` (the default for this role) so that it will only respond to requests locally. 
+To be safe, you can ensure that your rpc-bind-address is set to `127.0.0.1` (the default for this role) so that it will only respond to requests locally.
+	
+	
+
+
+	
 
 Other playbooks
 --------------------
