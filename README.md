@@ -62,7 +62,11 @@ The following ports needs to be configured for your RPC server.
 
 From this list, you can tell that you need at least 8001-8020 open in your firewall for incoming traffic in the default case.
 
-For pure RPC nodes it may be possible to close down the TPU and TPU forward ports. These ports are dynamically allocated and you can see them by looking at your node in `solana gossip`. If you want to firewall them, you can use this utility: https://github.com/rpcpool/tpu-traffic-classifier. 
+For pure RPC nodes it may be possible to close down the TPU and TPU forward ports. These ports are dynamically allocated and you can see them by looking at your node in `solana gossip`. If you want to firewall them, you can use this utility: https://github.com/rpcpool/tpu-traffic-classifier. Using this tool you can block incoming TPU and TPU forward on a local node by running:
+
+`./tpu-traffic-classifier -config-file config.yml -our-localhost -tpu-policy DROP -fwd-policy DROP -update=false`
+
+Put this in a SystemD service and you can have it start at boot of node and leave it continuously running.
 
 ### Network specific variables
 
