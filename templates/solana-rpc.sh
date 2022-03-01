@@ -40,7 +40,7 @@ exec /home/solana/.local/share/solana/install/active_release/bin/solana-validato
   --no-port-check \
   --no-voting \
 {% if solana_full_rpc_api %}
-{%   if (solana_version is version('1.9', '>=') and solana_version is version('1.9.6', '>=')) or (solana_version is version('1.9', '<') and solana_version is version('1.8.15', '>=')) %}
+{%   if (solana_version == "stable" or (solana_version is version('1.9', '>=') and solana_version is version('1.9.6', '>=')) or (solana_version is version('1.9', '<') and solana_version is version('1.8.15', '>=')) %}
   --full-rpc-api \
 {%  endif %}
 {% endif %}
