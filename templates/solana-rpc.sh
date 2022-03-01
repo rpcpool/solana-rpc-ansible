@@ -39,6 +39,11 @@ exec /home/solana/.local/share/solana/install/active_release/bin/solana-validato
   --no-genesis-fetch \
   --no-port-check \
   --no-voting \
+{% if solana_full_rpc_api %}
+{%   if (solana_version == "stable" or (solana_version is version('1.9', '>=') and solana_version is version('1.9.6', '>=')) or (solana_version is version('1.9', '<') and solana_version is version('1.8.15', '>=')) %}
+  --full-rpc-api \
+{%  endif %}
+{% endif %}
 {% if solana_trusted_validators|length > 0 %}
   --no-untrusted-rpc \
   --halt-on-trusted-validators-accounts-hash-mismatch \

@@ -3,6 +3,11 @@ Solana RPC role
 
 An Ansible role to deploy a Solana RPC node. This configures the validator software in RPC mode running under the user `solana`. The RPC service is installed as a user service running under this same user. 
 
+Updates
+------------
+
+  - 16/02 - From Solana 1.8.15 (mainnet) and 1.9.6 (testnet) onwards you will need to specify `solana_full_rpc_api: true` for this role to actually create a fully exposed RPC API node.
+
 Hardware Requirements
 ------------
 
@@ -37,6 +42,7 @@ These are the basic variables that configure the setup of the validators. They h
 | Name                 | Default value        | Description                |
 |----------------------|----------------------|----------------------------|
 | `solana_version` | stable | The solana version to install. |
+| `solana_full_rpc_api` | `true` | Whether to enable the full RPC API or not. That's typically what you want. |
 | `solana_root`        | /solana              | Main directory for solana ledger and accounts |
 | `solana_ledger_location` | /solana/ledger | Storage for solana ledger (should be on NVME) |
 | `solana_accounts_location` | /solana/ledger/accounts | Storage for solana accounts information. In case you use tmpfs for accounts this should be a subdirectory of your tmpfs mount point (e.g. `/solana/tmpfs/accounts` in case tmpfs is mounted on `/solana/tmpfs` |

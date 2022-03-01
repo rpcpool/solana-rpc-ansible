@@ -10,7 +10,7 @@ install_rust: true
 
 # Solana variables
 
-solana_installer_version: v1.8.14
+solana_installer_version: v1.8.15
 
 solana_version: stable
 
@@ -23,6 +23,8 @@ solana_accounts_location: /solana/ledger/accounts
 solana_authorized_voters: []
 
 solana_frozen_accounts: []
+
+solana_full_rpc_api: true
 
 solana_rpc_history: true
 
