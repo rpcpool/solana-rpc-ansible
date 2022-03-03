@@ -353,15 +353,15 @@ Other guides and docs
 --------------------
 These are some other guides, resources and docs written about Solana RPC:
 	
- - (Solana RPC setup)[https://github.com/CryptoManufaktur-io/solana-rpc]
- - (Solana Accounts DB plugin docs)[https://docs.solana.com/developing/plugins/accountsdb_plugin]
- - (Solana Accounts DB zoo - list of plugins)[https://github.com/rpcpool/solana-accountsdb-zoo]
- - (Solana RPC providers)[https://solana.com/rpc]
- - (Solana AWS validator)[https://github.com/solanium-io/aws-solana-validator]
- - (Solana RPC gist)[https://gist.github.com/buffalu/db6458d4f6a0b70ac303027b61a636af]
- - (Solana JSON-RPC caching server by Zubr)[https://github.com/zubr-exchange/cacherpc]
- - (RPC Cache server by Monadical)[https://github.com/Monadical-SAS/rpc-cache-server]
- - (Solana RPC proxy)[https://github.com/Blue-Terra/solana-rpc-proxy]
+ - [Solana RPC setup](https://github.com/CryptoManufaktur-io/solana-rpc)
+ - [Solana Accounts DB plugin docs](https://docs.solana.com/developing/plugins/accountsdb_plugin)
+ - [Solana Accounts DB zoo - list of plugins](https://github.com/rpcpool/solana-accountsdb-zoo)
+ - [Solana RPC providers](https://solana.com/rpc)
+ - [Solana AWS validator](https://github.com/solanium-io/aws-solana-validator)
+ - [Solana RPC gist](https://gist.github.com/buffalu/db6458d4f6a0b70ac303027b61a636af)
+ - [Solana JSON-RPC caching server by Zubr](https://github.com/zubr-exchange/cacherpc)
+ - [RPC Cache server by Monadical](https://github.com/Monadical-SAS/rpc-cache-server)
+ - [Solana RPC proxy](https://github.com/Blue-Terra/solana-rpc-proxy)
 
 We make no claims as to the accuracy or quality of any of these docs. Please review and make your own mind for what docs to follow!
 	
