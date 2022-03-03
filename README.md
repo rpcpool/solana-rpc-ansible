@@ -353,7 +353,7 @@ Other guides and docs
 --------------------
 These are some other guides, resources and docs written about Solana RPC:
 	
- - [Solana RPC setup](https://github.com/CryptoManufaktur-io/solana-rpc)
+ - [Solana RPC setup with Traefik](https://github.com/CryptoManufaktur-io/solana-rpc)
  - [Solana Accounts DB plugin docs](https://docs.solana.com/developing/plugins/accountsdb_plugin)
  - [Solana Accounts DB zoo - list of plugins](https://github.com/rpcpool/solana-accountsdb-zoo)
  - [Solana RPC providers](https://solana.com/rpc)
