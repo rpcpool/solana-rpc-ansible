@@ -15,6 +15,7 @@
   become: true
   become_user: solana
   register: install_output
+  changed_when: false
 
 - name: debug
   debug: var=install_output
@@ -28,6 +29,7 @@
   become: true
   become_user: solana
   register: rustup_output
+  changed_when: false
 
 - name: debug
   debug: var=rustup_output

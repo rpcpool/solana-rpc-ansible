@@ -24,13 +24,13 @@
   become_user: solana
   args:
     chdir: /home/solana/
+  changed_when: false
 
 - name: check solana pubkey
   command: /home/solana/.local/share/solana/install/active_release/bin/solana-keygen pubkey "{{ solana_public_key }}"
   register: res_pubkey
+  changed_when: false
 
 - name: save public key hash
   set_fact:
     solana_public_key_hash: "{{ res_pubkey.stdout }}"
-
-

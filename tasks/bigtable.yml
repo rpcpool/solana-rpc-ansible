@@ -1,7 +1,7 @@
 # Set up bigtable
 - name: ensure bigtable json is present
   template:
-    src: bigtable.json  
+    src: bigtable.json
     dest: "/home/solana/bigtable.json"
     owner: solana
     group: solana

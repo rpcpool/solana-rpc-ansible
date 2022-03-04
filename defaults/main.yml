@@ -74,8 +74,7 @@ solana_disabled_services: []
 # solana_wait_for_supermajority
 # solana_hard_fork
 # solana_accounts_shrink_path
-# solana_rpc_faucet_address: 
+# solana_rpc_faucet_address:
 # solana_snapshot_compression: 'none'
 # solana_banking_threads:
 # solana_rpc_threads
-

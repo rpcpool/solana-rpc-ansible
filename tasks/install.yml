@@ -14,6 +14,7 @@
   become: true
   become_user: solana
   register: install_output
+  changed_when: false
 
 - name: debug
   debug: var=install_output
@@ -31,12 +32,13 @@
     - "{{ solana_root }}"
     - "{{ solana_ledger_location }}"
     - "{{ solana_ledger_location }}/rocksdb"
-    - "{{ solana_accounts_location}}"
+    - "{{ solana_accounts_location }}"
 
-- name: clone solana src
-  git:
-    repo: https://github.com/solana-labs/solana.git
-    dest: /home/solana/src/solana
-    clone: yes
-  become: true
-  become_user: solana
+# - name: clone solana src
+#   git:
+#     repo: https://github.com/solana-labs/solana.git
+#     dest: /home/solana/src/solana
+#     clone: true
+#     version: HEAD
+#   become: true
+#   become_user: solana

@@ -2,7 +2,7 @@
 - name: disable ondemand governor (get performance governor)
   systemd:
     name: ondemand
-    enabled: no
+    enabled: false
     state: stopped
 
 - name: ensure cpu governor is set
@@ -21,13 +21,11 @@
   when: cpu_governor != "bios"
 
 # Sysctl settings
-- name:  ensure sysctl is set to sufficiently high value
+- name: ensure sysctl is set to sufficiently high value
   sysctl:
     name: "{{ item.key }}"
     value: "{{ item.value }}"
-    sysctl_set: yes
+    sysctl_set: true
     state: present
-    reload: yes
+    reload: true
   loop: "{{ sysctl_optimisations|dict2items }}"
-
-

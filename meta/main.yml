@@ -6,15 +6,15 @@ galaxy_info:
   license: MIT
   min_ansible_version: 2.8
   platforms:
-  - name: Ubuntu
-    versions:
-      - bionic
-      - xenial
-  - name: Debian
-    versions:
-      - stretch
-      - buster
-  galaxy_tags: 
-  - solana
+    - name: Ubuntu
+      versions:
+        - bionic
+        - xenial
+    - name: Debian
+      versions:
+        - stretch
+        - buster
+  galaxy_tags:
+    - solana
 
 dependencies: []

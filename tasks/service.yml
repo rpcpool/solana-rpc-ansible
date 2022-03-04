@@ -8,12 +8,13 @@
 
 - name: ensure solana user can use lingering systemd
   command: loginctl enable-linger solana
+  changed_when: false
 
 - name: ensure solana user is part of systemd-journal group
   user:
     name: solana
     groups: systemd-journal
-    append: yes
+    append: true
 
 - name: ensure solana directories exists
   file:
@@ -80,7 +81,7 @@
   systemd:
     daemon_reload: true
     name: "{{ item }}"
-    enabled: yes
+    enabled: true
     scope: user
   become: true
   become_user: solana
@@ -92,7 +93,7 @@
   systemd:
     daemon_reload: true
     name: "{{ item }}"
-    enabled: no
+    enabled: false
     scope: user
   become: true
   become_user: solana
