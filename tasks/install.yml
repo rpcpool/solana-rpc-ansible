@@ -34,11 +34,11 @@
     - "{{ solana_ledger_location }}/rocksdb"
     - "{{ solana_accounts_location }}"
 
-# - name: clone solana src
-#   git:
-#     repo: https://github.com/solana-labs/solana.git
-#     dest: /home/solana/src/solana
-#     clone: true
-#     version: HEAD
-#   become: true
-#   become_user: solana
+- name: clone solana src
+  git:
+    repo: https://github.com/solana-labs/solana.git
+    dest: /home/solana/src/solana
+    clone: true
+    version: "{{ solana_source_version }}"
+  become: true
+  become_user: solana
