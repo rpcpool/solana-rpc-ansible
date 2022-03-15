@@ -1,8 +1,8 @@
 solana_genesis_hash: 4uhcVJyU9pJkvQyS88uRDiswHXSCkY3zQawwpjk2NsNY
 
 
-solana_entrypoints: 
-  - entrypoint.testnet.solana.com:8001 
+solana_entrypoints:
+  - entrypoint.testnet.solana.com:8001
   - entrypoint2.testnet.solana.com:8001
   - entrypoint3.testnet.solana.com:8001
 

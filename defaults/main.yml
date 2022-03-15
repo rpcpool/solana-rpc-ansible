@@ -14,6 +14,8 @@ solana_installer_version: v1.8.15
 
 solana_version: stable
 
+solana_source_version: v1.9.9
+
 solana_root: /solana
 
 solana_ledger_location: /solana/ledger
@@ -74,8 +76,7 @@ solana_disabled_services: []
 # solana_wait_for_supermajority
 # solana_hard_fork
 # solana_accounts_shrink_path
-# solana_rpc_faucet_address: 
+# solana_rpc_faucet_address:
 # solana_snapshot_compression: 'none'
 # solana_banking_threads:
 # solana_rpc_threads
-

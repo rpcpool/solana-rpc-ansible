@@ -1,6 +1,6 @@
 solana_genesis_hash: 5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d
 
-solana_entrypoints: 
+solana_entrypoints:
   - entrypoint.mainnet-beta.solana.com:8001
   - entrypoint2.mainnet-beta.solana.com:8001
   - entrypoint3.mainnet-beta.solana.com:8001
@@ -18,4 +18,3 @@ solana_known_validators:
   - GdnSyH3YtwcxFvQrVVJMm1JhTS4QVX7MFsX56uJLUfiZ
   - DE1bawNcRJB9rVm3buyMVfr8mBEoyyu73NBovf2oXJsJ
   - CakcnaRDHka2gXyfbEd2d3xsvkJkqsLw2akB3zsN1D2S
-
