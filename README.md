@@ -325,10 +325,16 @@ The node can (in theory) store as much history as you can fit on high speed stor
 
 Some RPC providers and the Solana Foundation have copies of BigTable that go back to genesis. For more information about this, see https://github.com/solana-labs/solana-bigtable . 
 
-Indexes and performance
+Indexes and performance: or, why is my RPC so slow?
 --------------------
 
-There are three indexes that the Solana validator generates `program-id`, `spl-token-mint`, `spl-token-owner`. The last two are used to support queries either via `getTokensByOwner` or via `getTokensByDelegate`. They are also used to suport queries of `getProgramAccounts` which employ specific filters. These indexes have started to grow huge. If you do not need these queries to be fast for your RPC node, then you should remove them as you will reduce memory usage of your node considerably as well as improve start up times. 
+There are three indexes that the Solana validator generates `program-id`, `spl-token-mint`, `spl-token-owner`. The last two are used to support queries either via `getTokensByOwner`, `getTokenLargestAccounts` or via `getTokensByDelegate`. They are also used to suport queries of `getProgramAccounts` which employ specific filters. 
+	
+These indexes have started to grow huge. If you do not need these queries to be fast for your RPC node, then you should remove them as you will reduce memory usage of your node considerably as well as improve start up times. 
+
+If you DO need these RPC calls then you DO need to activate the indexes via the account index flag, otherwise these calls will run intolerably slow. This will require a lot of RAM - generally we don't recommend deploying these with less than 512 gb ram available.
+	
+An alternative to these might be using Geyser plugins, such as the postgres plugin, that can help speed up queries without relying on in-memory indexes: https://github.com/rpcpool/solana-geyser-park. 
 
 
 Security concerns
