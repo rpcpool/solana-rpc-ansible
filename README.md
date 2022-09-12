@@ -31,7 +31,7 @@ This role assumes some familiarity with the Solana validator software deployment
 Role Variables
 --------------
 
-The deploy ensures that the checksum for the version of solana-installer that you are downloading matches one given in `vars/main.yml`. In case you want to insatll a solana version not listed there, it is good if you first download and check the sha256 checksum of the solana-installer script (https://raw.githubusercontent.com/solana-labs/solana/install/solana-install-init.sh).
+The deploy ensures that the checksum for the version of solana-installer that you are downloading matches one given in `vars/main.yml`. In case you want to insatll a solana version not listed there, it is good if you first download and check the sha256 checksum of the solana-installer script (https://raw.githubusercontent.com/solana-labs/solana/master/install/solana-install-init.sh).
 
 There are a large number of configurable parameters for Solana. Many of these have workable defaults, and you can use this role to deploy a Solana RPC node without changing any of the default values and you should be able to have a decent experience. If you run this role without specifying any parameters, it'll configure a standard `mainnet` RPC node. 
 
