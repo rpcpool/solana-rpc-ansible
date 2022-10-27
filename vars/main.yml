@@ -24,4 +24,4 @@ solana_checksums:
   'stable': sha256:14635ca16308f8067e204ef29815bfaa4d692b96a7a7a165aa126b2663452efd
 
 # Checksum for rust up
-rustup_checksum: sha256:a3cb081f88a6789d104518b30d4aa410009cd08c3822a1226991d6cf0442a0f8
+rustup_checksum: sha256:173f4881e2de99ba9ad1acb59e65be01b2a44979d83b6ec648d0d22f8654cbce
