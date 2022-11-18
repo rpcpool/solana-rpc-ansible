@@ -368,6 +368,7 @@ These are some other guides, resources and docs written about Solana RPC:
  - [Solana JSON-RPC caching server by Zubr](https://github.com/zubr-exchange/cacherpc)
  - [RPC Cache server by Monadical](https://github.com/Monadical-SAS/rpc-cache-server)
  - [Solana RPC proxy](https://github.com/Blue-Terra/solana-rpc-proxy)
+ - [Autoclock RPC](https://github.com/overclock-validator/autoclock-rpc)
 
 We make no claims as to the accuracy or quality of any of these docs. Please review and make your own mind for what docs to follow!
 	
