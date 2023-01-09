@@ -20,7 +20,7 @@ Before deploy you should prepare the host so that the directory that you use for
 /solana/ledger - a 2 TB NVME drive to hold ledger
 ```
 
-## Why bare metal and not cloud?
+### Why bare metal and not cloud?
 
 Cloud servers (AWS, GCP, etc.) are generally unsuitable for Solana for a number of reasons:
  
