@@ -11,7 +11,7 @@ Updates
 Hardware Requirements
 ------------
 
-An RPC server requires _at least_ the same specs as a Solana validator, but typically has higher requirements. In particular, we recommend using 256 GB of RAM in order to store indexes. For more information about hardware requirements, please see [https://docs.solana.com/running-validator/validator-reqs](https://docs.solana.com/running-validator/validator-reqs). We strongly recommend you use a baremetal provider rather than a cloud provider unless you know what you're doing (and then why are you reading this page?).
+An RPC server requires _at least_ the same specs as a Solana validator, but typically has higher requirements. In particular, we recommend using 256 GB of RAM in order to store indexes. For more information about hardware requirements, please see [https://docs.solana.com/running-validator/validator-reqs](https://docs.solana.com/running-validator/validator-reqs). We strongly recommend you use a baremetal provider (not Hetzner) rather than a cloud provider unless you know what you're doing (and then why are you reading this page?).
 
 Before deploy you should prepare the host so that the directory that you use for your Accounts database and your Ledger location are properly configured. This can include setting up a tmpfs folder for accounts and a separate filesystem (ideally on an NVME drive) for the ledger. A common way to configure this might be:
 
@@ -28,6 +28,9 @@ Cloud servers (AWS, GCP, etc.) are generally unsuitable for Solana for a number 
  2) The single core performance is generally too low and cannot boost in the way that baremetal can
  3) Many cloud providers do not want the kind of workload that Solana is on their lower cost instances, leading you to use very expensive baremetal instances.
 
+### Why not Hetzner?
+
+Hetzner has decided that they do not want Solana RPC services running on their network. They actively block connections to Solana entrypoints and ratelimit any Solana traffic. Not only will your Solana node struggle to keep up with the network (on mainnet it will likely never catch up), but Hetzner is also very likely to shut down your account. 
 
 Software Requirements
 ------------
